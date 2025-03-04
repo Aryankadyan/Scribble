@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import MainCategories from "../components/MainCategories"
 
 const HomePage = () => {
   return (
@@ -15,12 +16,12 @@ const HomePage = () => {
             Lorem ipsum dolor sit amet consectetur, adipisicing elit.
           </p>
         </div>
-        <Link to='write'>
+        <Link to='write' className="hidden md:block relative">
         <svg
         viewBox="0 0 200 200"
         width='200'
         height='200'
-        className="text-lg tracking website"
+        className="text-lg tracking-widest"
         >
           <path
           id="circlePath"
@@ -46,11 +47,13 @@ const HomePage = () => {
             <polyline points='9 6 18 6 18 15'/>
     
           </svg>
-          </button> 
+          </button>
         </Link>
+        <MainCategories/>
       </div>
     </div>
   )
 }
 
 export default HomePage
+
