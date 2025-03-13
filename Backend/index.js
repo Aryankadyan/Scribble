@@ -7,8 +7,10 @@ import connectDB from './library/connectDB.js'
 import userRouter from './routes/user.route.js'
 import postRouter from './routes/post.route.js'
 import commentRouter from './routes/comment.route.js'
+import webhookRouter from './routes/webhook.route.js'
 
 const app = express()
+app.use('/webhooks', webhookRouter)
 app.use(express.json())
 // app.get('/test',(req,res)=>{
  //    res.status(200).send('it works bro!')
