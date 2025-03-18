@@ -1,3 +1,4 @@
+import ImageKit from "imagekit"
 import Post from "../models/post.model.js"
 
 export const getPosts = async (req, res) => {
@@ -44,3 +45,14 @@ export const deletePost = async (req, res) => {
    }
        res.status(200).json("Post has been deleted!")
    }
+
+   const imagekit = new ImageKit({
+      urlEndpoint: 'process.env.IMAGEKIT_URL_ENDPOINT',
+      publicKey: 'process.env.IMAGEKIT_PUBLIC_KEY',
+      privateKey: 'process.env.IMAGEKIT_PRIVATE_KEY',
+   })
+
+   export const uploadAuth = async(req, res)=>{
+      const result = ImageKit.getAuthenticationParameters()
+      res.send(result)
+   } 
