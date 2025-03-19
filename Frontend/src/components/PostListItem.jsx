@@ -11,7 +11,7 @@ const PostListItem = ({post}) => {
         </div>}
         {/* details */}
         <div className="flex flex-col gap-6">
-            <Link to='/test' className='text-4xl font-semibold'>
+            <Link to={`/${post.slug}`} className='text-4xl font-semibold'>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit.
             </Link>
             <div className="flex items-center gap-2 text-gray-500 text-sm">

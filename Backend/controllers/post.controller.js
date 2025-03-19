@@ -19,7 +19,7 @@ const limit = parseInt(req.query.limit) || 2
 }
 
 export const getPost = async (req, res) => {
-   const post = await Post.findOne({ slug: req.params.slug })
+   const post = await Post.findOne({ slug: req.params.slug }).populate("user", "username img")
    res.status(200).json(post)
 }
 

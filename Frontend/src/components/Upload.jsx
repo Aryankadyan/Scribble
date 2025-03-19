@@ -17,7 +17,7 @@ const authenticator =  async () => {
     } catch (error) {
         throw new Error(`Authentication request failed: ${error.message}`);
     }
-  }
+  } 
 
 const Upload = ({children, type, setProgress, setData}) => {
    const ref = useRef(null)
