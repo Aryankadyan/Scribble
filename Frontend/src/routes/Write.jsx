@@ -8,11 +8,11 @@ import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import Upload from '../components/Upload';
 
-const Write = () =>{
+const Write = () =>{ 
   const {isLoaded, isSignedIn} = useUser();
   const [value, setValue] = useState("")
   const [cover, setCover] = useState("");
-  const [img, setImg] = useState("");
+  const [img, setImg] = useState(""); 
   const [video, setVideo] = useState("");
   const [progress, setProgress] = useState(0)
 
@@ -20,11 +20,11 @@ const Write = () =>{
     img && setValue(prev=>prev + `<p><image src="${img.url}"/></p>`)
   },[img])
 
-  useEffect(()=>{
+  useEffect(()=>{    
     video && setValue(prev=>prev + `<p><iframe class='ql-video' src="${video.url}"/></p>`)
   },[video])
 
-  const navigate = useNavigate()
+  const navigate = useNavigate() 
 
   const {getToken} = useAuth()
 
@@ -50,7 +50,7 @@ const Write = () =>{
     return <div className=''>You should login!</div>
   }
    
-  const handleSubmit = e=>{
+  const handleSubmit = e=>{ 
     e.preventDefault()
     const formData = new FormData(e.target);
 

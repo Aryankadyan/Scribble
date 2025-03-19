@@ -29,14 +29,14 @@ const Upload = ({children, type, setProgress, setData}) => {
     
       const onSuccess = (res)=>{
         console.log(res)
-        setData(res)
+        setData(res) 
       }
       const onUploadProgress = (progress)=>{
         console.log(progress)
         setProgress(Math.round((progress.loaded / progress.total) * 100))
       }
   return (
-    <IKContext 
+    <IKContext  
     publicKey={import.meta.env.VITE_IMAGEKIT_PUBLIC_KEY} 
     urlEndpoint={import.meta.env.VITE_IMAGEKIT_URL_ENDPOINT} 
     authenticator={authenticator} >

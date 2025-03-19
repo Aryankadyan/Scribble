@@ -1,9 +1,21 @@
 import ImageKit from "imagekit"
 import Post from "../models/post.model.js"
+import User from '../models/user.model.js'
 
 export const getPosts = async (req, res) => {
+
+const page = parseInt(req.query.page) || 1
+const limit = parseInt(req.query.limit) || 2
+
    const posts = await Post.find()
-   res.status(200).json(posts)
+   .populate("user", "username")
+   .limit(limit)
+   .skip((page - 1) * limit)
+
+   const totalPosts = await Post.countDocuments()
+   const hasMore = page * limit < totalPosts
+
+   res.status(200).json({posts, hasMore})
 }
 
 export const getPost = async (req, res) => {
@@ -20,7 +32,7 @@ export const createPost = async (req, res) => {
       return res.status(401).json("Not authenticated!")
    }
    
-   const user = await user.findOne({clerkUserId})
+   const user = await User.findOne({clerkUserId})
    if(!user){
       return res.status(404).json("User not found!")
    }
@@ -49,10 +61,10 @@ export const deletePost = async (req, res) => {
    const imagekit = new ImageKit({
       urlEndpoint: 'process.env.IMAGEKIT_URL_ENDPOINT',
       publicKey: 'process.env.IMAGEKIT_PUBLIC_KEY',
-      privateKey: 'process.env.IMAGEKIT_PRIVATE_KEY',
+      privateKey:' process.env.IMAGEKIT_PRIVATE_KEY',
    })
 
    export const uploadAuth = async(req, res)=>{
-      const result = ImageKit.getAuthenticationParameters()
+      const result = imagekit.getAuthenticationParameters()
       res.send(result)
    } 
