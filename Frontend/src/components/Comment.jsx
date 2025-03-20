@@ -1,6 +1,7 @@
-import Image from "./Image"
-
+import Image from './Image'
+ 
 const Comment = () => {
+
   return (
     <div className="p-4 bg-orange-50 rounded-xl mb-8">
         <div className="flex items-center gap-4">

@@ -16,14 +16,14 @@ const SinglePostPage = () => {
 
   const { slug } = useParams()
 
-  const {isPending, error, data} = useQuery({
+ const {isPending, error, data} = useQuery({
     queryKey: ["post", slug],
     queryFn: () => fetchPost(slug),
   })
 
   if(isPending) return "Loading..."
   if(error) return "Something went wrong!" + error.message
-  if(!data) return "Post not found" 
+  if(!data) return "Post not found"  
 
   return (
     <div className="flex flex-col gap-8">
@@ -108,7 +108,7 @@ const SinglePostPage = () => {
       <Search/>
     </div>
    </div>
-   <Comments/>
+   <Comments postId={data._id}/>
    </div>
 
   )
