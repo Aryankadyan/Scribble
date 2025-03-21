@@ -8,14 +8,15 @@ export const getPostComments = async(req, res)=>{
 
    res.json(comments)
 }
+
 export const addComment = async(req, res)=>{
-    const clerkUserId = req.auth.clerkUserId
+    const clerkUserId = req.auth.userId
     const postId = req.params.postId
 
     if(!clerkUserId){
         return res.status(401).json("Not authenticated")
     }
-    const user = User.findOne({clerkUserId})
+    const user = await User.findOne({clerkUserId})
 
     const newComment = new Comment({
         ...req.body,

@@ -1,21 +1,22 @@
 import Image from './Image'
+import { format } from 'timeago.js'
  
-const Comment = () => {
+const Comment = ({comment}) => {
 
   return (
     <div className="p-4 bg-orange-50 rounded-xl mb-8">
         <div className="flex items-center gap-4">
-            <Image
-            src='userImg.jpeg'
+            {comment.user.img && <Image
+            src={comment.user.img}
             className='w-11 h-11 rounded-full object-cover'
             w='41'
-            />
-            <span className="font-medium">Aryan Kadyan</span>
-            <span className="text-sm text-gray-600">2 days ago</span>
+            />}
+            <span className="font-medium">{comment.user.username}</span>
+            <span className="text-sm text-gray-600">{format(comment.createdAt)}</span>
             </div>
             <div className="mt-5">
                 <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et reiciendis iste doloribus corrupti impedit mollitia enim officiis dolores excepturi cupiditate, voluptatum iure iusto aut praesentium nostrum inventore.
+                  {comment.desc}
                 </p>
             </div>
         </div>
