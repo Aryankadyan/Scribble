@@ -1,6 +1,5 @@
 import { Schema } from "mongoose";
 import mongoose from 'mongoose'
-import { type } from "os";
 
 const postSchema = new Schema(
     {
