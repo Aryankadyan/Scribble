@@ -42,6 +42,7 @@ const PostMenuAction = ({post}) => {
         },
       })
       const queryClient = useQueryClient()
+
       const saveMutation = useMutation({
         mutationFn: async()=>{
             const token = await getToken()
@@ -62,9 +63,37 @@ const PostMenuAction = ({post}) => {
             toast.error(error.response.data)
         },
       })
+
+      const featureMutation = useMutation({
+        mutationFn: async()=>{
+            const token = await getToken()
+            return axios.patch(`${import.meta.env.VITE_API_URL}/posts/feature`,
+                 {
+                    postId: post._id,
+                 },
+                 {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+        },
+        onSuccess: ()=>{
+           queryClient.invalidateQueries({ queryKey: ["post", post.slug] })
+        },
+        onError: (error)=>{
+            toast.error(error.response.data)
+        },
+      })
+    
+
       const handleDelete = ()=>{
         deleteMutation.mutate()
       }
+
+      const handleFeature = ()=>{
+        deleteMutation.mutate()
+      }
+
       const handleSave = ()=>{
         if(!user){
             return navigate('/login') 
@@ -91,9 +120,32 @@ const PostMenuAction = ({post}) => {
                 />
             </svg>
             <span>Save this Post</span>
-            {saveMutation.isPending && <span className='text-xs'>(in progress)</span> }
+            {saveMutation.isPending && (
+            <span className='text-xs'>(in progress)</span> 
+       )}
         </div>
         )}
+        { 
+            isAdmin && <div className='flex items-center gap-3 py-3 text-sm cursor-pointer' onClick={handleFeature}>
+                 <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 48 48"
+            width='20px'
+            height='20px'
+            >
+                <path
+                d="M12 4C10.3 4 9 5.3 9 7v34l15-9 15 9V7c0-1.7-1.3-3-3-3H12z "
+                stroke="black"
+                strokeWidth='2'
+                fill={featureMutation.isPending ? post.isfeatured ? "none" : "black" : post.isfeatured ? "black" : "none"}
+                />
+                </svg>
+                <span>Feature</span>
+                {featureMutation.isPending && (
+            <span className='text-xs'>(in progress)</span>
+                )}
+                </div>
+        }
         {user && (post.user.username === user.username || isAdmin) && (
         <div className="flex items-center gap-3 py-3 text-sm cursor-pointer"
         onClick={handleDelete}
