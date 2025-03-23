@@ -25,7 +25,7 @@ const PostListItem = ({ post }) => {
           <span>Unknown Author</span>
         )}
           <Link className="text-blue-800">{post.category}</Link>
-          <span>{format(post.createdAt)}</span>
+          <span>{format(post.createdAt)}</span> 
         </div>
         <p>{post.desc}</p>
         <Link to={`/${post.slug}`} className="underline text-blue-800 text-sm">
