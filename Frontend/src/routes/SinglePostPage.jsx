@@ -4,7 +4,7 @@ import PostMenuAction from '../components/PostMenuAction'
 import Search from '../components/Search'
 import Comments from '../components/Comments'
 import axios from 'axios'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery } from "@tanstack/react-query";
 import {format} from 'timeago.js'
 
 const fetchPost = async(slug) =>{
@@ -13,18 +13,17 @@ const fetchPost = async(slug) =>{
 }
 
 const SinglePostPage = () => {
+  const { slug } = useParams()  
 
-  const { slug } = useParams()
-
- const {isPending, error, data} = useQuery({
+  const { isPending, error, data } = useQuery({
     queryKey: ["post", slug],
     queryFn: () => fetchPost(slug),
-  })
+  });
 
-  if(isPending) return "Loading..."
-  if(error) return "Something went wrong!" + error.message
-  if(!data) return "Post not found"  
-
+  if (isPending) return "loading...";
+  if (error) return "Something went wrong!" + error.message;
+  if (!data) return "Post not found!";
+  
   return (
     <div className="flex flex-col gap-8">
       <div className="flex gap-8">
