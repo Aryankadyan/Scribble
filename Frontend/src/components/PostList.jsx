@@ -9,7 +9,7 @@ const fetchPosts = async(pageParam, searchParams)=>{
   console.log(searchParamsObj)
 
   const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts`,{
-    params: {page: pageParam, limit: 2, ...searchParamsObj},
+    params: {page: pageParam, limit: 11, ...searchParamsObj},
   })
   return res.data
  }
