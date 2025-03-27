@@ -4,15 +4,15 @@ import { Link, useSearchParams } from 'react-router-dom'
 const SideMenu = () => {
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const handleFilterChange = e => {
-     if(searchParams.get("sort" ) !== e.target.value){
+  const handleFilterChange = (e) => {
+     if(searchParams.get("sort") !== e.target.value){
       setSearchParams({
         ...Object.fromEntries(searchParams.entries()),
         sort: e.target.value,
       })
      }
   }
-  const handleCategoryChange = category => {
+  const handleCategoryChange = (category) => {
      if(searchParams.get("cat" ) !== category){
       setSearchParams({
         ...Object.fromEntries(searchParams.entries()),

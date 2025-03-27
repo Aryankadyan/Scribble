@@ -15,7 +15,8 @@ const Comment = ({comment, postId}) => {
   const mutation = useMutation({
     mutationFn: async () => {
       const token = await getToken();
-      return axios.delete(`${import.meta.env.VITE_API_URL}/comments/${comment._id}`,
+      return axios.delete(
+        `${import.meta.env.VITE_API_URL}/comments/${comment._id}`,
         {
         headers: {
           Authorization: `Bearer ${token}`,

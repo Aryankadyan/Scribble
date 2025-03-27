@@ -16,7 +16,7 @@ const app = express()
 app.use(cors(process.env.FRONTEND_URL))
 app.use(clerkMiddleware()) 
 app.use('/webhooks', webhookRouter)
-app.use(express.json())
+app.use(express.json())   
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

@@ -24,9 +24,8 @@ const Upload = ({children, type, setProgress, setData}) => {
      
      const onError = (err)=>{
         console.log(err)
-        toast.error("Image upload failed")
+        toast.error("Image upload failed!")
       }
-    
       const onSuccess = (res)=>{
         console.log(res)
         setData(res) 
@@ -49,7 +48,8 @@ const Upload = ({children, type, setProgress, setData}) => {
             ref={ref}
             accept={`${type}/*`}
           />
-          <div className='cursor-pointer' onClick={() => ref.current.click()}>{children}</div>
+          <div className='cursor-pointer' onClick={() => ref.current.click()}>{children}
+          </div>
   </IKContext>
   )
 }
